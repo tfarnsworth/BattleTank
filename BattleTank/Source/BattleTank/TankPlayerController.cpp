@@ -2,6 +2,7 @@
 
 
 #include "TankPlayerController.h"
+#include "Tank.h"
 
 void ATankPlayerController::Tick(float DeltaSeconds)
 {
@@ -32,7 +33,7 @@ void ATankPlayerController::AimTowardsCrosshair()
     bool Hit = GetSightRayHitLocation(Out_HitLocation);
     if (Hit)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Hit at %s"), *Out_HitLocation.ToString());
+        //UE_LOG(LogTemp, Warning, TEXT("Hit at %s"), *Out_HitLocation.ToString());
         GetControlledTank()->AimAt(Out_HitLocation);
     }
 }

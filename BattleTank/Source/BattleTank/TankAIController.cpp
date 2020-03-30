@@ -2,6 +2,7 @@
 
 
 #include "TankAIController.h"
+#include "Tank.h"
 
 void ATankAIController::Tick(float DeltaSeconds)
 {
@@ -20,24 +21,7 @@ void ATankAIController::BeginPlay()
 {
     Super::BeginPlay();
     ATank* Tank = GetControlledTank();
-    if (Tank)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Tank AI: %s"), *Tank->GetName());
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("No AI tank found!"));
-    }
-
     APawn* PlayerTank = GetPlayerTank();
-    if (PlayerTank)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Found player tank: %s"), *PlayerTank->GetName());
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("No player tank found!"));
-    }
 }
 
 ATank* ATankAIController::GetControlledTank() const
