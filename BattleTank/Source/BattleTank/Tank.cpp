@@ -3,6 +3,9 @@
 
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
+#include "Projectile.h"
+#include "Engine/StaticMeshSocket.h"
 
 // Sets default values
 ATank::ATank()
@@ -22,6 +25,7 @@ void ATank::BeginPlay()
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
+	Barrel = BarrelToSet;
 }
 
 void ATank::SetTurretReference(UTankTurret* TurretToSet)
@@ -29,9 +33,17 @@ void ATank::SetTurretReference(UTankTurret* TurretToSet)
 	TankAimingComponent->SetTurretReference(TurretToSet);
 }
 
-void ATank::Fire() const
+void ATank::Fire()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Fire the missiles!"));
+	if (!Barrel) { return; }
+
+	// Spawn a projectile at the socket location on the barrel
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(
+		ProjectileBlueprint,
+		Barrel->GetSocketLocation(FName("Projectile")),
+		Barrel->GetSocketRotation(FName("Projectile"))
+		);
 }
 
 // Called to bind functionality to input
