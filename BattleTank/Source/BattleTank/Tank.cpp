@@ -44,6 +44,8 @@ void ATank::Fire()
 		Barrel->GetSocketLocation(FName("Projectile")),
 		Barrel->GetSocketRotation(FName("Projectile"))
 		);
+
+	Projectile->LaunchProjectile(LaunchSpeed);
 }
 
 // Called to bind functionality to input
