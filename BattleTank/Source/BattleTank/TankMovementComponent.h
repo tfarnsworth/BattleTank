@@ -22,7 +22,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Input)
 	// Throw ranges from -1 to +1
-	void IntendMoveForward(float Throw);
+	void IntendMove(float Throw);
+
+	UFUNCTION(BlueprintCallable, Category = Input)
+	void IntendTurn(float Throw);
 
 private:
 	UTankTrack* LeftTrack = nullptr;
